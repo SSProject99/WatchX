@@ -20,6 +20,15 @@
     --grey-lite-active: rgb(136, 136, 136);
 }
 
+ng-view {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: antiquewhite;
+}
+
 body {
     background-color: var(--background-lite);
 }
@@ -32,6 +41,9 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+button {
+    cursor: pointer;
+}
 
 
 @media screen and (min-width:1000px){

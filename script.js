@@ -1,4 +1,4 @@
-var app = angular.module("mainApp", ["containerComponent", "resultBoxComponent"]);
+var app = angular.module("mainApp", ["ngRoute", "footerComponent"]);
 
 app.controller("homeController", function ($scope, $compile) {
     $scope.componentCount = 0;
@@ -6,13 +6,13 @@ app.controller("homeController", function ($scope, $compile) {
     $scope.resultHeading = 'Copy the result';
 
 
- 
+
     $scope.encryptInput = function () {
         $scope.copyMessage = "Copy result";
         $scope.copyIcon = "content_copy";
 
         var inputTextNode = document.getElementById("inputText");
-        if(!$scope.inputIsEmpty(inputTextNode.value)){
+        if (!$scope.inputIsEmpty(inputTextNode.value)) {
             $scope.showResult = "true";
             var reversedText = inputTextNode.value.split('').reverse().join('');
             var encryptedText = $scope.caesarCipher(reversedText, 6);
@@ -64,7 +64,7 @@ app.controller("homeController", function ($scope, $compile) {
 
         var copyText = document.getElementById('resultText');
 
-        if(!$scope.inputIsEmpty(copyText.value)){
+        if (!$scope.inputIsEmpty(copyText.value)) {
             $scope.copyMessage = "Result copied!";
             $scope.copyIcon = "check";
 
@@ -79,7 +79,7 @@ app.controller("homeController", function ($scope, $compile) {
                 console.error('Unable to copy result:', err);
             }
             window.getSelection().removeAllRanges();
-    
+
             // For Moble devices
             copyText.select();
             copyText.setSelectionRange(0, 99999); // For mobile devices
@@ -88,9 +88,64 @@ app.controller("homeController", function ($scope, $compile) {
         }
     };
 
+    $scope.footer = [{
+        'name': 'Home',
+        'active': true,
+        'icon': 'home',
+        'routePath': '#!home'
+    },
+    {
+        'name': 'Display',
+        'active': false,
+        'icon': 'analytics',
+        'routePath': '#!analytics'
+    }];
 
+    $scope.toggleIcon = function (icon) {
+        $scope.footer.forEach(function (button) {
+            button.active = (button.name === icon);
+        });
+    };
 });
 
+app.controller("indexController", function ($scope) {
+    $scope.footer = [{
+        'name': 'Home',
+        'active': true,
+        'icon': 'home',
+        'routePath': '#!home'
+    },
+    {
+        'name': 'Display',
+        'active': false,
+        'icon': 'analytics',
+        'routePath': '#!analytics'
+    }];
+
+    $scope.toggleIcon = function (icon) {
+        $scope.footer.forEach(function (button) {
+            button.active = (button.name === icon);
+        });
+    };
+});
+
+app.controller('MainController', function($scope, $compile) {
+    $scope.containerHeading = 'SS'
+    $scope.addComponent = function(){
+      var componentTemplate = '<main-container></main-container>';
+      var componentElement = angular.element(componentTemplate);
+      var compiledComponent = $compile(componentElement)($scope);
+      angular.element(document.querySelector('.encrypt-container')).append(compiledComponent);
+    }
+  })
 
 
-
+app.config(function ($routeProvider) {
+    $routeProvider
+        .when("/home", {
+            templateUrl: "./homepage.html"
+        })
+        .when("/analytics", {
+            templateUrl: "./testing.html"
+        });
+  });
