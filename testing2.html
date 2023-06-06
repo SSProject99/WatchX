@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic Component Generation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+
+<body ng-controller="mainController">
+    <div>
+        {{head}}
+        <container-component container-heading={{component.containerHeading}}></container-component>
+
+        <div ng-repeat="component in components">
+            <container-component container-heading={{component.containerHeading}}></container-component>
+
+        </div>
+    </div>
+<script src="/test.js"></script>
+    <script>
+       
+    </script>
+</body>
+
+</html>

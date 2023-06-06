@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="containerComponent">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Container/container.styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Container</title>
+</head>
+
+<body ng-controller="contController">
+    <div class="container-box">
+        <h3>{{containerHeading}}</h3>
+        <textarea ng-model="inputText" id="inputText" cols="30" rows="10"></textarea>
+        <div class="action-box">
+            <button ng-click="clearInput()"><span class="material-symbols-outlined">cancel</span>Clear</button>
+            <button ng-click="encryptInput()"><span class="material-symbols-outlined">lock</span>Encrypt</button>
+            <button ng-click="decryptInput()"><span class="material-symbols-outlined">no_encryption</span>Decrypt</button>
+        </div>
+    </div>
+</body>
+<script src="./container.directive.js"></script>
+<script src="./container.controller.js"></script>
+
+</html>

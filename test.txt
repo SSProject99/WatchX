@@ -1,0 +1,24 @@
+// var app = angular.module("mainApp", ["containerDirective"]);
+// app.controller("encryptController", function($scope) {
+//     $scope.containerHeading = "Text here to Encrypt";
+
+//     $scope.encryptInput = function($scope) {
+//         alert(document.getElementById("inputtext").value);
+//     }
+// });
+
+var app = angular.module('mainApp', ["containerComponent"])
+app.controller('encryptController', function ($scope, $compile) {
+    $scope.componentCount = 0;
+    $scope.containerHeading = "Paste text here to encrypt"
+
+    // $scope.addComponent = function () {
+        var componentId = 'component_' + $scope.componentCount;
+        var componentTemplate = '<main-container></main-container>';
+        var componentElement = angular.element('<div id="' + componentId + '">' + componentTemplate + '</div>');
+        var compiledComponent = $compile(componentElement)($scope);
+        angular.element(document.getElementsByClassName('encrypt-decrypt')[0].append(compiledComponent));
+        angular.bootstrap(componentElement, ['containerComponent']);
+        $scope.componentCount++;
+    // };
+})

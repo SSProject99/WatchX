@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dynamic Component</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+  <div class="encrypt-container"></div>
+  <button ng-click="addComponent()"  ng-controller="MainController">Create</button>
+</body>
+<script src="./Container/container.directive.js"></script>
+
+  <script>
+    var app = angular.module('myApp', ['containerComponent'])
+    app.controller('MainController', function($scope, $compile) {
+        $scope.containerHeading = 'SS'
+        $scope.addComponent = function(){
+          var componentTemplate = '<main-container></main-container>';
+          var componentElement = angular.element(componentTemplate);
+          var compiledComponent = $compile(componentElement)($scope);
+          angular.element(document.querySelector('.encrypt-container')).append(compiledComponent);
+        }
+      })
+
+  </script>
+
+</html>
