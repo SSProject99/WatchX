@@ -5,7 +5,6 @@ app.controller("resultBoxController", function ($scope) {
     $scope.encryptInput = function ($scope) {
         alert(document.getElementById("inputtext").value)
     }
-    
 
     $scope.copyResult = function () {
         var copyText = document.getElementById('resultText');
@@ -29,7 +28,4 @@ app.controller("resultBoxController", function ($scope) {
         navigator.clipboard.writeText(copyText.value);
         alert("Copied the text: " + copyText.value);
     };
-
-
-
 })
