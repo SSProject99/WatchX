@@ -1,11 +1,9 @@
-var app = angular.module("homeApp", ["ngRoute", "containerComponent", "resultBoxComponent", "footerComponent"]);
+var app = angular.module("homeApp", ["ngRoute", "containerComponent", "resultBoxComponent"]);
 
 app.controller("homeController", function ($scope, $compile) {
     $scope.componentCount = 0;
     $scope.containerHeading = "Paste the text here to encrypt";
     $scope.resultHeading = 'Copy the result';
-
-
 
     $scope.encryptInput = function () {
         $scope.copyMessage = "Copy result";
@@ -58,23 +56,20 @@ app.controller("homeController", function ($scope, $compile) {
         inputTextNode.value = "";
     }
 
-
     $scope.copyResult = function () {
         // For Desktop/System devices
 
         var copyText = document.getElementById('resultText');
 
         if (!$scope.inputIsEmpty(copyText.value)) {
-            $scope.copyMessage = "Result copied!";
-            $scope.copyIcon = "check";
-
             var range = document.createRange();
             range.selectNode(copyText);
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
             try {
-                document.execCommand('copy');
-                alert('Result copied to clipboard' + copyText.value);
+                document.execCommand('copy');            
+                $scope.copyMessage = "Result copied!";
+                $scope.copyIcon = "check";
             } catch (err) {
                 console.error('Unable to copy result:', err);
             }
@@ -84,37 +79,6 @@ app.controller("homeController", function ($scope, $compile) {
             copyText.select();
             copyText.setSelectionRange(0, 99999); // For mobile devices
             navigator.clipboard.writeText(copyText.value);
-            alert("Copied the text: " + copyText.value);
         }
     };
-
-    $scope.footer = [{
-        'name': 'Home',
-        'active': true,
-        'icon': 'home',
-        'routePath': '#!home'
-    },
-    {
-        'name': 'Display',
-        'active': false,
-        'icon': 'analytics',
-        'routePath': '#!analytics'
-    }];
-
-    $scope.toggleIcon = function (icon) {
-        $scope.footer.forEach(function (button) {
-            button.active = (button.name === icon);
-        });
-    };
 });
-
-
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when("/home", {
-            templateUrl: "./testing.html"
-        })
-        .when("/analytics", {
-            templateUrl: "./testing2.html"
-        });
-  });

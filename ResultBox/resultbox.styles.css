@@ -35,14 +35,13 @@ textarea:focus {
 
 .result-action-box {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
 }
 
 .result-action-box > button {
   align-items: center;
   appearance: button;
-  width: 100%;
   text-align: center;
   background-color: var(--button-pri);
   border-radius: 9px;
@@ -77,4 +76,16 @@ textarea:focus {
 
 .material-symbols-outlined {
     transform: scale(.7);
+}
+
+@media screen and (min-width: 500px) and (max-width: 768px) {
+    .result-action-box > button {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:800px){
+    .result-action-box > button {
+        width: 100%;
+    }
 }

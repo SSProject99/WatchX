@@ -9,21 +9,20 @@
     <link rel="stylesheet" href="./styles.css">
     <title>Encrypt Decrypt</title>
 </head>
-<body>
-    <div class="all-containers" ng-controller="homeController">
+<body ng-controller="homeController">
+    SS
+    <div class="all-containers">
         <div class="encrypt-container">
-            <main-container container-heading={{mainContainerHeading}}></main-container>
+            <main-container></main-container>
         </div>
         <div class="result-box-container" ng-if="showResult">
             <result-box-container ></result-box-container>
         </div>
-        <footer-component></footer-component>
     </div>
 
 
 </body>
 <script src="./homepage.script.js"></script>
-<script src="./Container/container.directive.js"></script>
-<script src="./ResultBox/resultbox.directive.js"></script>
-<script src="./Footer/footer.directive.js">footer.directive.js</script>
+<script src="./Container/container.module.js"></script>
+<script src="./ResultBox/resultbox.module.js"></script>
 </html>
